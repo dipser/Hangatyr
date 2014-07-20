@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Einstellungen
+APP="Hangatyr.app"
+APPRES="appres"
+
+
+# Aktuelles Verzeichnis auslesen
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+# In das Verzeichnis wechseln
+cd $DIR
+
+# Dateien zippen als ausführbare app.nw und ablegen in der originalen node-webkit.app
+zip -r $APP/Contents/Resources/app.nw $APPRES/index.html $APPRES/package.json $APPRES/res
+
+# nw.icns ersetzen
+cp $APPRES/app.icns $APP/Contents/Resources/nw.icns
+
+# Fügt im About-Dialog Credits hinzu
+cp $APPRES/Credits.html $APP/Contents/Resources/Credits.html
+
+# $APP/Contents/Info.plist ersetzen/bearbeiten
+# CFBundleName => Applikationsname im Menu
+# CFBundleShortVersionString => Version der Applikation: "Version x.x.x"
+# CFBundleVersion =>  Build-Version der Applikation: "(v1.0.0)"
+
+# App öffnen
+open $APP
+
+# Terminal beenden
+kill -9 $(ps -p $(ps -p $PPID -o ppid=) -o ppid=) 
+
