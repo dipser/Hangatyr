@@ -1,0 +1,31 @@
+{
+  "name": "Hangatyr",
+  "main": "index.html",
+  "locale": "de_DE",
+  "description": "App for Mac OS X Defaults",
+  "version": "1.0.0",
+  "keywords": [ "Hangatyr", "config", "osx", "defaults", "dotfiles" ],
+  "maintainers":[ {
+    "name": "Aurel Hermand",
+    "email": "hangatyr@devone.de",
+    "web": "http://www.devone.de"
+  }],
+  "no-edit-menu": true,
+  "window": {
+  	//"show" : false, // Fenster wird beim starten nicht angezeigt
+    "title": "Hangatyr",
+    "icon": "link.png", // About-Logo
+    "toolbar": true,
+    "frame": true,
+    "width": 800,
+    "height": 500,
+    "position": "mouse", // mouse | 
+    "min_width": 800,
+    "min_height": 200,
+    "max_width": 800
+    //"max_height": 600
+  },
+  "webkit": {
+    "plugin": true
+  }
+}
